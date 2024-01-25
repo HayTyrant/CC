@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV File Column Reader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>CSV File Column Reader</h1>
+        
+        <form method="post" enctype="multipart/form-data">
+            <label for="file">Choose a CSV file:</label>
+            <input type="file" id="file" name="file" accept=".csv" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if columns %}
+            <h2>Columns of the First Row:</h2>
+            {% for column in columns %}
+                <div class="textbox">
+                    <label>{{ column }}</label>
+                    <input type="text" value="{{ column }}" readonly>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
